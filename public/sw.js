@@ -5,3 +5,6 @@ self.addEventListener('activate', function(event){
     console.log('[SW] Activating Server worker ...',event);
     return self.clients.claim();
 });
+self.addEventListener('fetch',function(event){
+    console.log('[SW] Fetch ...',event);
+});

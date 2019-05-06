@@ -12,7 +12,11 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css">
   <link rel="stylesheet" href="/src/css/app.css">
   <link rel="stylesheet" href="/src/css/feed.css">
-  <link ref="manifest" href="/public/manifest.json">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" sizes="192x192" href="/src/images/icons/app-icon.png"> 
+  <meta name = "apple-mobile-wep-app-capable"content="yes">
+  <meta name = "apple-mobile-web-app-status-bar-style" content="black">
+  <meta name = "apple-mobile-web-app-title" content="Plant a tree">
 </head>
 <body>
 
@@ -26,7 +30,9 @@
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="/">Feed</a>
+          <a class="mdl-navigation__link" href="/">News</a>
+          <a class="mdl-navigation__link" href="/">All trees</a>
+          <a class="mdl-navigation__link" href="/">My profiles</a>
           <a class="mdl-navigation__link" href="/help">Help</a>
           <div class="drawer-option">
             <button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
@@ -39,7 +45,9 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Plant a tree</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/">Feed</a>
+        <a class="mdl-navigation__link" href="/">News</a>
+        <a class="mdl-navigation__link" href="/">All trees</a>
+        <a class="mdl-navigation__link" href="/">My profiles</a>
         <a class="mdl-navigation__link" href="/help">Help</a>
         <div class="drawer-option">
           <button class="enable-notifications mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent">
@@ -53,16 +61,16 @@
         <form>
           <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="title">
-            <label class="mdl-textfield__label" for="title" name="title">Title</label>
+            <label class="mdl-textfield__label" for="title" name="title">Account email</label>
           </div>
-          <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="manual-location">
-            <input class="mdl-textfield__input" type="text" id="location">
-            <label class="mdl-textfield__label" for="location" name="location">Location</label>
+          <div class="input-section mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="title">
+            <label class="mdl-textfield__label" for="title" name="title">Password</label>
           </div>
           <br>
           <div>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--accent"
-                    type="submit" id="post-btn">Post!
+                    type="submit" id="post-btn">Login!
             </button>
           </div>
           <br>
@@ -77,8 +85,17 @@
            alt="Explore the City"
            class="main-image">
       <div class="page-content">
-        <h5 class="text mdl-color-text--primary">Share your Moments</h5>
-        <p class = "text mdl-color-text--primary">Today spcial</p>
+        <h4 class="text mdl-color-text--primary">Planting tips</h4>
+        <h6 class = "text mdl-color-text--primary">Tree needs water</h6>
+        <p>You need to give trees enough water</p>
+        <h6 class = "text mdl-color-text--primary">Tree needs sun light</h6>
+        <p>you should not plant tree on a undergrand garage</p>
+        <h6 class = "text mdl-color-text--primary">Tree takes space to grow</h6>
+        <p>You should not plant tree inside your wardrobe</p>
+        <h6 class = "text mdl-color-text--primary">[other tips can go in here]</h6>
+        <p>Detail of tips</p>
+        <h4 class="text mdl-color-text--primary">Spical today:</h4>        
+        <h1>wait to add</h1>
         <div id="shared-moments"></div>
       </div>
       <div class="floating-button">

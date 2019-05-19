@@ -9,12 +9,12 @@
 <% include ../partials/nav.ejs %>
 <div class="container" id = "outer">
 <% include ../partials/Checkout.ejs %>
+  
+
 <% include ../partials/cart.ejs %>
+
 </div>
 
-
-
-<script src= 'objects.js'></script>
 <script>
 
   let outer = document.getElementById('outer');
@@ -33,6 +33,26 @@
   let outerCheckout = document.getElementById('outCheckout');
   let singleTreeC;
 
+  let tipData = {
+        tips : {
+            topic:['Tree needs water','Tree need sun light','Tree takes space to grow'],
+            content:['you need to give tree enough water', 'you should not plant your tree on a undergrand garage','You should not plant tree inside your wardrobe']
+        }
+    };
+
+  var treeData = {
+      trees : {
+          name:['TreeA','TreeB','TreeC','TreeD'],
+          desc:['DescA', 'DescB','DescC','DescD'],
+          price:['1','2','3','4']
+      }
+  };
+  var newData = {
+      news : {
+          date:['19/5/2019'],
+          desc:['Team is working on this page']
+      }
+  };
   var userBuy = [];
   var totalPrice = 0;
   var tree = '<div class="alert alert-info text-left"><div class="container"  id = "%TREEBOXID%"><img src="%TREEICON%" width="400" height="150">	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;%NAME% now is $%PRICE% 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;<button class="btn btn-lg btn-danger" id = "%BID%">buy</button></div></div>';
@@ -208,10 +228,9 @@
   hideCartC();
   hideCheckOutC();
   addTree();
-  //addNews();
+  addNews();
   //button.addEventListener('click',clearup);
 
 </script>
-<script src = 'news.js'></script>
 </body>
 </html>

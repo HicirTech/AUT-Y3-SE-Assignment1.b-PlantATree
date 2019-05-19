@@ -16,10 +16,11 @@
     <p>this is the assignment 1 (b) for SE 2019 </p>
   </div>
 </div>
-<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+<nav class="navbar navbar-inverse">
     <center>
       <button class="btn btn-lg btn-default" id='newBtn'><span class="glyphicon"></span>News and tips</button>
       <button class="btn btn-lg btn-default" id='allTreeBtn'><span class="glyphicon"></span>All trees</button>
+      <button class="btn btn-lg btn-default"id='viewCartBtn'><span class="glyphicon"></span>View cart</button>
       <button class="btn btn-lg btn-default"><span class="glyphicon"></span>My profiles</button>
     </center>
 </nav>
@@ -29,32 +30,26 @@
   <div class="container" id = "outer">
   
   <div id = "tipsC" class="alert alert-info text-left">      
-        <h1 id = "TreeTitle">Plant trips</h1>  
+        <h1>Plant trips</h1>  
   </div>
   <div id = "newsC" class="alert alert-info text-left">      
       <h1>News</h1>  
 </div>
 
   <div id='treeC'>
-        <h1>today spcial</h1>
-    </div>
-
-
-
-  
-      
-       
-       
-
+        <h1 id ='TreeTitle'>today spcial</h1>
   </div>
 
 
+  <div id='cartC'>
+    <h1>Item in you cart</h1>
+    <h1 id = 'totalPrice'>total price : 0</h1>
+    <button class="btn btn-lg btn-default"id='checkOutButton'><span class="glyphicon"></span>Check out</button>
+  
+  </div>
 
-
-
-
-
-   
+  </div>
+  
 
 <script>
 
@@ -65,44 +60,69 @@
   let newBtn = document.getElementById('newBtn');
   let allTreeBtn = document.getElementById('allTreeBtn');
   let newC = document.getElementById('newsC');
+  let viewCartBtn = document.getElementById('viewCartBtn');
+  let cartC = document.getElementById('cartC');
   let singleTreeC;
-  
-  allTreeBtn.addEventListener('click',function(){
 
-    outerClearup();
-    outer.appendChild(treeC);
-  });
-  newBtn.addEventListener('click',function(){
-
-    outerClearup();
-    outer.appendChild(tipC);
-    outer.appendChild(newC);
-  });
-  
-
-  var tipData = {
+  let tipData = {
         tips : {
             topic:['Tree needs water','Tree need sun light','Tree takes space to grow'],
             content:['you need to give tree enough water', 'you should not plant your tree on a undergrand garage','You should not plant tree inside your wardrobe']
         }
     };
 
-    var treeData = {
-        trees : {
-            name:['TreeA','TreeB','TreeC','TreeD'],
-            desc:['DescA', 'DescB','DescC','DescD'],
-            price:['1','2','3','4']
-        }
-    };
-    var newData = {
-        news : {
-            date:['19/5/2019'],
-            desc:['Team is working on this page']
-        }
-    };
+  var treeData = {
+      trees : {
+          name:['TreeA','TreeB','TreeC','TreeD'],
+          desc:['DescA', 'DescB','DescC','DescD'],
+          price:['1','2','3','4']
+      }
+  };
+  var newData = {
+      news : {
+          date:['19/5/2019'],
+          desc:['Team is working on this page']
+      }
+  };
+
   var userBuy = [];
+  var totalPrice = 0;
+  var tree = '<div class="alert alert-info text-left"><div class="container"  id = "%TREEBOXID%"><img src="%TREEICON%" width="400" height="150">	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;%NAME% now is $%PRICE% 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;<button class="btn btn-lg btn-danger" id = "%BID%">buy</button></div></div>';
+ 
+  var currentID = 0;
   var news = '<div class="container"><p>%TIME%</p><li>%NEWS%</li><br></div>';  
   var tips = '<div class="container"><p>%TOPIC%</p><li>%CONTENT%</li><br></div>';
+
+  var cartTree = '<div class="alert alert-info text-left"><div class="container"><img src="%TREEICON%" width="400" height="150">&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;%NAME% :$ $%PRICE% 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;</div></div>';
+  viewCartBtn.addEventListener('click',function(){
+    console.log(userBuy);
+    outerClearup();
+    totalPrice=0;
+    outer.appendChild(cartC);
+    for(i=0;i!=userBuy.length;i++){
+      var html = cartTree.replace('%TREEICON%',(parseInt(userBuy[i])+1)+'.jpg');
+      html=html.replace('%NAME%',treeData.trees['name'][parseInt(userBuy[i])]);
+      html=html.replace('$%PRICE%',treeData.trees['price'][parseInt(userBuy[i])]);
+      totalPrice+=parseInt(treeData.trees['price'][parseInt(userBuy[i])]);
+      console.log(totalPrice);
+      cartC.insertAdjacentHTML('beforeend',html);
+    }
+    document.getElementById('totalPrice').textContent='Total price is: '+totalPrice;
+  });
+  
+  allTreeBtn.addEventListener('click',function(){
+    outerClearup();
+    outer.appendChild(treeC);
+    document.getElementById('TreeTitle').textContent='All Trees';
+  });
+  newBtn.addEventListener('click',function(){
+    outerClearup();
+    outer.appendChild(tipC);
+    outer.appendChild(newC);
+  });
+  
+
+
 
   function addNews(){
     for(var i = 0;i!=newData.news['date'].length;i++){
@@ -120,9 +140,6 @@
     }
   }
 
-  var tree = '<div class="alert alert-info text-left"><div class="container"  id = "%TREEBOXID%"><img src="%TREEICON%" width="400" height="150">	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;%NAME% now is $%PRICE% 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;<button class="btn btn-lg btn-danger" id = "%BID%">buy</button></div></div>';
-
-  var currentID = 0;
   function addTree(){
     for(var i = 0;i!=treeData.trees['name'].length;i++){
       var html= tree.replace('%NAME%',treeData.trees['name'][i]);
@@ -142,28 +159,41 @@
     }
   }
   function treeBoxClick(event){
-    outerClearup();
-    var treeTarget;
-      if(event.target.id!=''){
-        console.log('hit the box');
-        treeTarget=(event.target.id).split('TREEBOX')[1];
-      }else{
-        var targetArray=(event.target.src).split('.jpg')[0].split('/');
-        treeTarget=targetArray[targetArray.length-1]-1;
+    console.log(event);
+    if(!(event.target.id).includes('BID')){
+      outerClearup();
+      var treeTarget;
+        if(event.target.id!=''){
+          console.log('hit the box');
+          treeTarget=(event.target.id).split('TREEBOX')[1];
+        }else{
+          var targetArray=(event.target.src).split('.jpg')[0].split('/');
+          treeTarget=targetArray[targetArray.length-1]-1;
+        }
+        console.log(treeTarget);
+
+        var theTree = '<div class="alert alert-info text-left"  id = "%BTID%"><center><img src="%TREEICON%"><br><h1 style=font-size:100px>%TREENAME%</h1><h1 class="text-success">$%TREEPRICE%</h1><h1>%TREEDESC%</h1><button id = "%BBID%" class="btn btn-danger btn-lg">buy</button></center></div>';
+
+        var singleTreeHtml= theTree.replace('%TREENAME%',treeData.trees['name'][treeTarget]);
+        singleTreeHtml= singleTreeHtml.replace('%TREEPRICE%',treeData.trees['price'][treeTarget]);
+        singleTreeHtml=singleTreeHtml.replace('%BBID%','BBID'+treeTarget);
+        singleTreeHtml=singleTreeHtml.replace('%BTID%','BTID'+treeTarget)
+        singleTreeHtml=singleTreeHtml.replace('%TREEICON%',(parseInt(treeTarget)+1)+'.jpg');
+        singleTreeHtml=singleTreeHtml.replace('%TREEDESC%',treeData.trees['desc'][treeTarget]);
+        outer.insertAdjacentHTML("beforeend",singleTreeHtml);
+        singleTreeC = document.getElementById('BTID'+treeTarget);
+        var singleTreeBuyButton = document.getElementById('BBID'+treeTarget);
+        singleTreeBuyButton.addEventListener('click',function(event){
+          singleTreeAddToCart(event);
+        });
       }
-      console.log(treeTarget);
-
-      var theTree = '<div class="alert alert-info text-left"  id = "%BTID%"><center><img src="%TREEICON%"><br><h1 style=font-size:100px>%TREENAME%</h1><h1 class="text-success">$%TREEPRICE%</h1><h1>%TREEDESC%</h1><button id = "%BBID%" class="btn btn-danger btn-lg">buy</button></center></div>';
-
-      var singleTreeHtml= theTree.replace('%TREENAME%',treeData.trees['name'][treeTarget]);
-      singleTreeHtml= singleTreeHtml.replace('%TREEPRICE%',treeData.trees['price'][treeTarget]);
-      singleTreeHtml=singleTreeHtml.replace('%BBID%','BBID'+treeTarget);
-      singleTreeHtml=singleTreeHtml.replace('%BTID%','BTID'+treeTarget)
-      singleTreeHtml=singleTreeHtml.replace('%TREEICON%',(parseInt(treeTarget)+1)+'.jpg');
-      singleTreeHtml=singleTreeHtml.replace('%TREEDESC%',treeData.trees['desc'][treeTarget]);
-      outer.insertAdjacentHTML("beforeend",singleTreeHtml);
-      singleTreeC = document.getElementById('BTID'+treeTarget);
-     
+  }
+  function singleTreeAddToCart(event){
+    var clickedOn= (event.target.id).split('BBID')[1];
+      var i = parseInt(clickedOn);
+      //prompt('are you going to buy tree:'+);
+      userBuy.push(i);
+      alert('Tree : '+treeData.trees['name'][i]+'   Price : '+treeData.trees['price'][i]+ ', now is in your cart!!');
   }
   function outerClearup(){
     var last = outer.lastChild;
@@ -179,10 +209,13 @@
       var i = parseInt(clickedOn);
       //prompt('are you going to buy tree:'+);
       userBuy.push(i);
-      alert('Tree : '+treeData.trees['name'][i]+'Price : '+treeData.trees['price'][i]+ ', now is in your cart!!');
+      alert('Tree : '+treeData.trees['name'][i]+'    Price : '+treeData.trees['price'][i]+ ', now is in your cart!!');
   }
 
   
+  function hideCartC(){
+    outer.removeChild(cartC);
+  }
 
   function clearup(){
     console.info(outer);
@@ -191,6 +224,7 @@
     outer.insertAdjacentHTML('beforeend',html);
     }
   addTips();
+  hideCartC();
   addTree();
   addNews();
   //button.addEventListener('click',clearup);

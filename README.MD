@@ -6,7 +6,7 @@ Here is team Stream 10 - Group 2
 
 ### Team members: 
 * **Scrum master** : Johnny He 16939881
-* **Developer** : Zeting Luo 16938158 
+* [**Developer**](https://www.linkedin.com/in/zeting-tim-luo-30007515b/) : Zeting Luo 16938158 
 * **Developer** : Aaron Zhong 15911169
 
 ### About this 

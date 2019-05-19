@@ -65,12 +65,11 @@
   let singleTreeC;
   
   allTreeBtn.addEventListener('click',function(){
-    
 
     try{
-      outer.removeChild(singleTreeC);
       outer.removeChild(tipC);
       outer.removeChild(newsC);
+      outer.removeChild(singleTreeC);
     }catch{
       console.log('singleTreeC is not there')
     }

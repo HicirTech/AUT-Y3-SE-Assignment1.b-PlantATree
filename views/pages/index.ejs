@@ -61,28 +61,7 @@
     Please do work through the Getting Started guide, even if you do know how to build such an application.  The guide covers the basics of working with Heroku, and will familiarize you with all the concepts you need in order to build and deploy your own apps.
   </div>
 </div>
-<script>
-var AWS = require('aws-sdk');
-// Set the region 
-let awsConfig = {
-    region:'ap-southeast-2',
-    accessKeyId:'AKIAYQ4HVLAO6H7B5TI4',
-    secretAccessKey:'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'
-};
-
-AWS.config.update(awsConfig);
-
-var params = {
-    TableName : 'TreeDB'
-  };
-
-var documentClient = new AWS.DynamoDB.DocumentClient();
-
-documentClient.scan(params, function(err, data) {
-    if (err) console.log(err);
-    else console.log(data);
-  });
-console.log("simple testing here")
+<script>console.log("simple testing here")
 let a = document.querySelector(".lang-logo");
 console.info(a);</script>
 </body>

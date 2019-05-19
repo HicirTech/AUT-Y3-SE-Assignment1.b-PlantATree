@@ -69,30 +69,14 @@
   
   allTreeBtn.addEventListener('click',function(){
 
-    try{
-      outer.removeChild(tipC);
-      outer.removeChild(newsC);
-      outer.removeChild(singleTreeC);
-    }catch{
-      console.log('singleTreeC is not there')
-    }
-    if(outer.hasChildNodes(treeC)){
-      outer.appendChild(treeC);
-    }
+    outerClearup();
+    outer.appendChild(treeC);
   });
   newBtn.addEventListener('click',function(){
 
-    try{
-      outer.removeChild(treeC);
-      outer.removeChild(singleTreeC);
-    }catch{
-      console.log('singleTreeC is not there')
-    }
-      
-      if(outer.hasChildNodes(tipC)){
-        outer.appendChild(tipC);
-        outer.appendChild(newC);
-      }
+    outerClearup();
+    outer.appendChild(tipC);
+    outer.appendChild(newC);
   });
   
 
@@ -158,6 +142,7 @@
     }
   }
   function treeBoxClick(event){
+    outerClearup();
     var treeTarget;
       if(event.target.id!=''){
         console.log('hit the box');
@@ -178,27 +163,15 @@
       singleTreeHtml=singleTreeHtml.replace('%TREEDESC%',treeData.trees['desc'][treeTarget]);
       outer.insertAdjacentHTML("beforeend",singleTreeHtml);
       singleTreeC = document.getElementById('BTID'+treeTarget);
-      forSingleTreeCleanUp();
+     
   }
-  function forSingleTreeCleanUp(){
-      try{
-        outer.removeChild(treeC);
-      
-      }catch(error){
-        console.log(error);
-      }
-      try{
-        outer.removeChild(tipC);
-      
-      }catch(error){
-        console.log(error);
-      }
-      try{
-        outer.removeChild(newsC);
-      
-      }catch(error){
-        console.log(error);
-      }
+  function outerClearup(){
+    var last = outer.lastChild;
+
+    while (last) { 
+            outer.removeChild(last); 
+            last = outer.lastElementChild; 
+    }
   }
 
   function buyButtonClick(event){

@@ -1,13 +1,12 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+# Node build artifacts
+node_modules
+npm-debug.log
+
+# Local development
+*.env
+*.dev
 .DS_Store
-/build
-/captures
-.externalNativeBuild
+
+# Docker
+Dockerfile
+docker-compose.yml

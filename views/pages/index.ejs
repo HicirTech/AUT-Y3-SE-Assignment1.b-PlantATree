@@ -178,10 +178,21 @@
       forSingleTreeCleanUp();
   }
   function forSingleTreeCleanUp(){
-    try{
-        outer.removeChild(tipC);
-        outer.removeChild(newsC);
+      try{
         outer.removeChild(treeC);
+      
+      }catch(error){
+        console.log(error);
+      }
+      try{
+        outer.removeChild(tipC);
+      
+      }catch(error){
+        console.log(error);
+      }
+      try{
+        outer.removeChild(newsC);
+      
       }catch(error){
         console.log(error);
       }

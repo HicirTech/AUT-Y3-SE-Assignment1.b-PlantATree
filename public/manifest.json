@@ -1,0 +1,10 @@
+{
+    "name": "Plant a tree",
+    "description": "SE-2019-S1-A1(b)-Assignment-plant-a-Tree",
+    "display":"fullscreen",
+    "repository": "https://github.com/HicirTech/AUT-Y3-SE-Assignment1.b-PlantATree",
+    "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+    "keywords": ["node", "express", "heroku"],
+    "image": "heroku/nodejs"
+  }
+  

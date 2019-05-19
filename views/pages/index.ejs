@@ -8,18 +8,8 @@
 <% include ../partials/top.ejs %>
 <% include ../partials/nav.ejs %>
 <div class="container" id = "outer">
-
-  <div id = "tipsC" class="alert alert-info text-left">      
-        <h1>Plant trips</h1>  
-  </div>
-
-  <div id = "newsC" class="alert alert-info text-left">      
-      <h1>News</h1>  
-  </div>
-
-  <div id='treeC'>
-        <h1 id ='TreeTitle'>today spcial</h1>
-  </div>
+    <% include ../partials/Checkout.ejs %>
+  
 
 
   <div id='cartC'>
@@ -42,6 +32,9 @@
   let newC = document.getElementById('newsC');
   let viewCartBtn = document.getElementById('viewCartBtn');
   let cartC = document.getElementById('cartC');
+  let checkoutC = document.getElementById('checkoutC');
+  let innerCheckout = document.getElementById('checkOutButton');
+
   let singleTreeC;
 
   let tipData = {
@@ -100,6 +93,14 @@
     outer.appendChild(tipC);
     outer.appendChild(newC);
   });
+  innerCheckout.addEventListener('click',function(){
+    if(userBuy.length!=0){
+      outerClearup();
+      outer.appendChild(checkoutC);
+    }else{
+      alert('you have not thing to check out');
+    }
+  });
   
 
 
@@ -138,6 +139,7 @@
       });
     }
   }
+
   function treeBoxClick(event){
     console.log(event);
     if(!(event.target.id).includes('BID')){
@@ -197,6 +199,9 @@
     outer.removeChild(cartC);
   }
 
+  function hideCheckOutC(){
+    outer.removeChild(checkoutC);
+  }
   function clearup(){
     console.info(outer);
     outer.style.visibility = 'hidden';
@@ -205,6 +210,7 @@
     }
   addTips();
   hideCartC();
+  hideCheckOutC();
   addTree();
   addNews();
   //button.addEventListener('click',clearup);

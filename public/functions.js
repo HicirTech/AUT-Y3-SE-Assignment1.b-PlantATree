@@ -42,13 +42,13 @@ var newData = {
 };
 var userBuy = [];
 var totalPrice = 0;
-var tree = '<div class="alert alert-info text-left"><div class="container"  id = "%TREEBOXID%"><img src="%TREEICON%" width="400" height="150">	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;%NAME% now is $%PRICE% 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;<button class="btn btn-lg btn-danger" id = "%BID%">buy</button></div></div>';
+var tree = '<div class="alert alert-info text-left"><div class="container"  id = "%TREEBOXID%"><img src="%TREEICON%" width="200" height="200">	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;%NAME% now is $%PRICE% 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;<button class="btn btn-lg btn-danger" id = "%BID%">buy</button></div></div>';
 
 var currentID = 0;
 var news = '<div class="container"><p>%TIME%</p><li>%NEWS%</li><br></div>';
 var tips = '<div class="container"><p>%TOPIC%</p><li>%CONTENT%</li><br></div>';
 
-var cartTree = '<div class="alert alert-info text-left"><div class="container"><img src="%TREEICON%" width="400" height="150">&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;%NAME% :$ $%PRICE% 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;</div></div>';
+var cartTree = '<div class="alert alert-info text-left"><div class="container"><img src="%TREEICON%" width="200" height="200">&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;%NAME% :$ $%PRICE% 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;</div></div>';
 loginBtn.addEventListener('click', function () {
     isLogin = true;
     displayLogin();

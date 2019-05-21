@@ -17,6 +17,9 @@ let loginpass = document.getElementById('password');
 let loginC = document.getElementById('loginC')
 let loginBtn = document.getElementById('loginBtn');
 let profileBtn = document.getElementById('profilebtn');
+let treeSearchBtn = document.getElementById('treeSearchBtn');
+let treeInput = document.getElementById('treeSearch');
+let innerTreeC = document.getElementById('innerTreeC');
 let isLogin = false;
 let singleTreeC;
 
@@ -54,8 +57,40 @@ loginBtn.addEventListener('click', function () {
     displayLogin();
 });
 
+treeSearchBtn.addEventListener('click',function(){
+    var userInput = treeSearch.value;
 
-
+    if(userInput!=''){
+        var index = treeData.trees['name'].indexOf(userInput);
+        if(index != -1){
+        outerClearup();
+        outer.appendChild(treeC);
+        treeCleanup();
+        
+        var price = treeData.trees['price'][index];
+        var desc = treeData.trees['desc'][index];
+        var html = tree.replace('%NAME%', userInput);
+    
+        html = html.replace('%PRICE%', price);
+        html = html.replace('%BID%', 'BID' + index);
+        html = html.replace('%TREEICON%', (index + 1) + '.jpg');
+        html = html.replace('%TREEBOXID%', 'TREEBOX' + index);
+        treeC.insertAdjacentHTML("beforeend", html);
+        var button = document.getElementById('BID' + index);
+        button.addEventListener('click', function (event) {
+            buyButtonClick(event);
+        });
+        var treeBox = document.getElementById('TREEBOX' + index);
+        treeBox.addEventListener('click', function (event) {
+            treeBoxClick(event);
+        });
+    }else{
+        alert('NO RESULT FOUND');
+    }
+    }else{
+        alert('INPUT TREE NAME TO SEARCH');
+    }
+});
 viewCartBtn.addEventListener('click', function () {
     console.log(userBuy);
     outerClearup();
@@ -76,6 +111,8 @@ viewCartBtn.addEventListener('click', function () {
 allTreeBtn.addEventListener('click', function () {
     outerClearup();
     outer.appendChild(treeC);
+    treeCleanup();
+    addTree();
     document.getElementById('TreeTitle').textContent = 'All Trees';
 });
 newBtn.addEventListener('click', function () {
@@ -115,7 +152,6 @@ profileBtn.addEventListener('click', function () {
 
 
 function askLogin() {
-
 }
 function displayLogin() {
     var html = '<div id = "thankYouC" class="alert alert-info text-left"><h1>Login success</h1><h1>Welcome back %USER% </h1></div>';
@@ -149,6 +185,7 @@ function addTips() {
 }
 
 function addTree() {
+    treeC.appendChild(innerTreeC);
     for (var i = 0; i != treeData.trees['name'].length; i++) {
         var html = tree.replace('%NAME%', treeData.trees['name'][i]);
         html = html.replace('%PRICE%', treeData.trees['price'][i]);
@@ -165,6 +202,9 @@ function addTree() {
             treeBoxClick(event);
         });
     }
+}
+function treeCRebuild(){
+
 }
 
 function treeBoxClick(event) {
@@ -218,6 +258,14 @@ function outerCartCCleanup() {
     while (last) {
         cartC.removeChild(last);
         last = cartC.lastElementChild;
+    }
+}
+function treeCleanup() {
+    var last = treeC.lastChild;
+
+    while (last) {
+        treeC.removeChild(last);
+        last = treeC.lastElementChild;
     }
 }
 

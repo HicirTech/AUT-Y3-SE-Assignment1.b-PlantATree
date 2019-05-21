@@ -120,10 +120,16 @@ function askLogin() {
 function displayLogin() {
     var html = '<div id = "thankYouC" class="alert alert-info text-left"><h1>Login success</h1><h1>Welcome back %USER% </h1></div>';
     var user = userName.value;
-    html = html.replace('%USER%', user);
-    outerClearup();
-    //  isLogin = true;
-    outer.insertAdjacentHTML('beforeend', html);
+    if (user != '') {
+
+
+        html = html.replace('%USER%', user);
+        outerClearup();
+        //  isLogin = true;
+        outer.insertAdjacentHTML('beforeend', html);
+    }else{
+        alert('you need to input user name');
+    }
 }
 
 function addNews() {

@@ -57,37 +57,37 @@ loginBtn.addEventListener('click', function () {
     displayLogin();
 });
 
-treeSearchBtn.addEventListener('click',function(){
+treeSearchBtn.addEventListener('click', function () {
     var userInput = treeSearch.value;
 
-    if(userInput!=''){
+    if (userInput != '') {
         var index = treeData.trees['name'].indexOf(userInput);
-        if(index != -1){
-        outerClearup();
-        outer.appendChild(treeC);
-        treeCleanup();
-        
-        var price = treeData.trees['price'][index];
-        var desc = treeData.trees['desc'][index];
-        var html = tree.replace('%NAME%', userInput);
-    
-        html = html.replace('%PRICE%', price);
-        html = html.replace('%BID%', 'BID' + index);
-        html = html.replace('%TREEICON%', (index + 1) + '.jpg');
-        html = html.replace('%TREEBOXID%', 'TREEBOX' + index);
-        treeC.insertAdjacentHTML("beforeend", html);
-        var button = document.getElementById('BID' + index);
-        button.addEventListener('click', function (event) {
-            buyButtonClick(event);
-        });
-        var treeBox = document.getElementById('TREEBOX' + index);
-        treeBox.addEventListener('click', function (event) {
-            treeBoxClick(event);
-        });
-    }else{
-        alert('NO RESULT FOUND');
-    }
-    }else{
+        if (index != -1) {
+            outerClearup();
+            outer.appendChild(treeC);
+            treeCleanup();
+
+            var price = treeData.trees['price'][index];
+            var desc = treeData.trees['desc'][index];
+            var html = tree.replace('%NAME%', userInput);
+
+            html = html.replace('%PRICE%', price);
+            html = html.replace('%BID%', 'BID' + index);
+            html = html.replace('%TREEICON%', (index + 1) + '.jpg');
+            html = html.replace('%TREEBOXID%', 'TREEBOX' + index);
+            treeC.insertAdjacentHTML("beforeend", html);
+            var button = document.getElementById('BID' + index);
+            button.addEventListener('click', function (event) {
+                buyButtonClick(event);
+            });
+            var treeBox = document.getElementById('TREEBOX' + index);
+            treeBox.addEventListener('click', function (event) {
+                treeBoxClick(event);
+            });
+        } else {
+            alert('NO RESULT FOUND');
+        }
+    } else {
         alert('INPUT TREE NAME TO SEARCH');
     }
 });
@@ -163,7 +163,7 @@ function displayLogin() {
         outerClearup();
         //  isLogin = true;
         outer.insertAdjacentHTML('beforeend', html);
-    }else{
+    } else {
         alert('you need to input user name');
     }
 }
@@ -203,7 +203,7 @@ function addTree() {
         });
     }
 }
-function treeCRebuild(){
+function treeCRebuild() {
 
 }
 
